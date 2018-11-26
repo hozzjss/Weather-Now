@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ActivityIndicator, StatusBar,Button } from 'react-native';
+import { View, Text, Image, ActivityIndicator, StatusBar,Button, StyleSheet } from 'react-native';
 
+// you wanted a review there you have it
+// it's not meant as judgment but as a sort of advice
+
+// consider using typescript it's more sophisticated and a plus in my opinion
+// you use ES6 features that's nice!
 
 export default class App extends Component {
-    
+    // You should use redux or mobx instead,
+    // you're gonna work on enterprise software
+    // that demands complex state
     state = {
         loading: true,
         userLocation: '',
@@ -14,6 +21,9 @@ export default class App extends Component {
       }
 
       componentDidMount(){
+        // for business logic use redux saga or separate the logic
+          // into a separate file that has a function that returns a promise
+          // that either resolves with the location or rejects with the error
           try{
         navigator.geolocation.getCurrentPosition(position => {  
             fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
@@ -34,8 +44,12 @@ export default class App extends Component {
     
 
   render() {
+        // C is not very helpful as a variable name
+      // maybe use a state field which stores the currently selected one between 'F' or 'C'
       const {loading, C} = this.state;
     return (
+        // instead of inline styles you should use a separate file for the stylesheets
+
             <View style={styles.container}>
             <StatusBar hidden/>
                 <View style={{justifyContent: 'center', alignItems: 'center' }}>
@@ -60,6 +74,13 @@ export default class App extends Component {
     );
   }
 }
+
+// it's preferable to use Stylesheet
+// like this, with typescript you specify the elements
+// it's gonna target too which is super nice
+const stylish = StyleSheet.create({
+
+});
 
 const styles = {
   container: {
